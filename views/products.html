@@ -1,0 +1,16 @@
+{% extends "./layout.html" %}
+
+{% block content %}
+    <div style="margin: 20px 0 20px 0">
+        <button class="btn btn-primary">Add a Product</button>
+    </div>
+
+    <ul class="list-group">
+        {% for product in products %}
+            {% include "./_productItem.html" %}
+        {% endfor %}
+    </ul>
+
+{% endblock%}
+
+

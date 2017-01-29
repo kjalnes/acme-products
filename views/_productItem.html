@@ -1,0 +1,24 @@
+<li class="list-group-item">
+    {{ product.name }}
+    <br />
+    <form method="POST" action="/products/{{ product.id }}?_method=DELETE">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</li>
+
+<!-- // the browser doesnt have a concept of a delete method so we need to create a middleware that listen in our server.js for a request that include _method
+and then change our method to whatever we have defined in the methodOverride module.
+
+// we have to use methodoverrite on method="POST":
+// RESTful http actions CRUD
+- CREATE
+- READ
+- UPDATE
+- DELETE
+
+There are http METHODS that are associateed with each of the CRUD actions above.
+For CREATE action the method is POST
+For READ action you send a GET request
+For UPDATE action i.e edit a user that is in a database on your server, you send a PUT request
+For DELETE action you send a DELETE request
+ -->
