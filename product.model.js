@@ -47,5 +47,20 @@ module.exports = {
         newProduct.id = ++max;
         _products.push(newProduct);
         console.log(_products);
+    },
+    findProduct : function(id) {
+        var products = this.getProducts();
+        return products.filter(function(product){
+            return product.id === id;
+        })[0];
+    },
+    editProduct : function(id, newName) {
+        _products = _products.map(function(product){
+            if(product.id === id) {
+                product.name = newName;
+            }
+            return product;
+        });
+        console.log(_products);
     }
 }

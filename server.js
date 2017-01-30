@@ -48,24 +48,51 @@ app.get('/add', function(req, res, next) {
 
 app.delete('/products/:id', function(req, res, next){
     var id = req.params.id * 1;
-    // console.log(id);
     Products.deleteProduct(id);
-    // console.log(Products.getProducts());
     res.redirect('/products');
 });
 
 
-// add a product
 
+
+// EDIT PRODUCT
+
+// pass the selected product object ot the edit product page
+app.get('/products/:id/edit', function(req, res, next){
+   var id = req.params.id * 1;
+   var productToEdit = Products.findProduct(id);
+   res.render('edit', { productToEdit });
+});
+
+// when update putton is clicked, get input name and pass product object
+app.post('/update/:id', function(req, res){
+   var newName = req.body.product;
+   var id = req.params.id * 1;
+   Products.editProduct(id, newName);
+
+   // console.log('newName', newName);
+   console.log('id', id);
+   console.log('newName', newName);
+   console.log('req.params', req.params)
+   // console.log(req);
+   // res.send('herkjf')
+   res.redirect('/products');
+});
+
+// hints given vaguesly by proff:
+// you may wanna think about using method-override and put or patch
+// or you can do somehitng headers
+
+
+
+// add a product
 app.post('/add', function(req, res) {
   var product = req.body.product;
-  // var text = req.body.text;
   Products.addProduct(product);
   res.redirect('/products');
 });
 
 
-// edit a product
 
 
 
