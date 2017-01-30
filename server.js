@@ -79,11 +79,6 @@ app.post('/update/:id', function(req, res){
    res.redirect('/products');
 });
 
-// hints given vaguesly by proff:
-// you may wanna think about using method-override and put or patch
-// or you can do somehitng headers
-
-
 
 // add a product
 app.post('/add', function(req, res) {
@@ -93,8 +88,7 @@ app.post('/add', function(req, res) {
 });
 
 
-
-
+const port = process.env.PORT || 3000;
 
 app.listen(process.env.PORT, function(){
     console.log('listening on port ' + process.env.PORT)

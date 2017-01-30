@@ -1,15 +1,15 @@
 <li class="list-group-item">
+
+
     {{ product.name }}
-    <br />
-    <form method="POST" action="/products/{{ product.id }}?_method=DELETE">
-        <button type="submit" class="btn btn-danger">Delete</button>
+
+    <form method="POST" action="/products/{{ product.id }}?_method=DELETE" style="display:inline" >
+        <button type="submit" class="btn btn-danger pull-right" style="margin-right: 10px">Delete</button>
     </form>
 
-    <br>
-
-    <form method="GET" action="/products/{{ product.id }}/edit/">
-        <button type="submit" class="btn btn-primary">Edit</button>
+    <form method="GET" action="/products/{{ product.id }}/edit/" style="display:inline">
+        <button type="submit" class="btn btn-default pull-right" style="margin-right: 10px">Edit</button>
     </form>
-
+    <br style="clear:both">
 </li>
 

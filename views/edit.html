@@ -4,8 +4,7 @@
 
     <form method="POST" action="/update/{{ productToEdit.id }}">
         <label for="name_field" style="margin: 20px 0 20px 0">Name:</label><br>
-        <input name="product" type="text" id="edit_product" value= "{{ productToEdit.name }}" />
-<br>
+        <input name="product" type="text" id="edit_product" value= "{{ productToEdit.name }}" /><br>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 
