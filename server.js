@@ -14,9 +14,7 @@ nunjucks.configure('views', {
     noCache: true
 });
 
-
 // we are gonne use methodOverride for the delete methods and the put methods (add)
-
 // create a static route for any calls to a file that exist in node_modules (we need bootstrap.js)
 // specify where its located with built in module path
 app.use( express.static(path.join(__dirname, 'node_modules')));
@@ -46,8 +44,6 @@ app.get('/add', function(req, res, next) {
     res.render('add');
 });
 
-
-
 // delete product
 
 app.delete('/products/:id', function(req, res, next){
@@ -58,10 +54,6 @@ app.delete('/products/:id', function(req, res, next){
     res.redirect('/products');
 });
 
-app.listen(process.env.PORT, function(){
-    console.log('listening on port ' + process.env.PORT)
-})
-
 
 // add a product
 
@@ -71,3 +63,12 @@ app.post('/add', function(req, res) {
   Products.addProduct(product);
   res.redirect('/products');
 });
+
+
+// edit a product
+
+
+
+app.listen(process.env.PORT, function(){
+    console.log('listening on port ' + process.env.PORT)
+})
