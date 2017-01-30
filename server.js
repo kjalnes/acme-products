@@ -4,8 +4,8 @@ const nunjucks = require('nunjucks');
 const methodOverride = require('method-override');
 const path = require('path');
 const Products = require('./product.model');
-const bodyParser = require("body-parser");
-// const routes = require('./routes');
+const bodyParser = require('body-parser');
+
 
 nunjucks.configure('views', {
     autoescape: true,
@@ -14,78 +14,29 @@ nunjucks.configure('views', {
     noCache: true
 });
 
-// we are gonne use methodOverride for the delete methods and the put methods (add)
-// create a static route for any calls to a file that exist in node_modules (we need bootstrap.js)
-// specify where its located with built in module path
-app.use( express.static(path.join(__dirname, 'node_modules')));
-// app.use('/vendor' express.static(path.join(__dirname, 'node_modules')));
+// create a static route for any calls to a file that exist in node_modules (i.e need bootstrap.js)
 
-app.use(methodOverride("_method"));
+app.use( express.static(path.join(__dirname, 'node_modules')));
 
 // this allows us to call req.body in products.js
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(methodOverride("_method"));
 
 
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 
 
-// routes
-app.get('/', function(req, res, next){
-    res.render('index');
-})
-
-app.get('/products', function(req, res, next) {
-    // console.log(Products.getProducts());
-    res.render('products', { title: 'Products', products: Products.getProducts() });
-});
-
-app.get('/add', function(req, res, next) {
-    res.render('add');
-});
-
-// delete product
-
-app.delete('/products/:id', function(req, res, next){
-    var id = req.params.id * 1;
-    Products.deleteProduct(id);
-    res.redirect('/products');
-});
+// makes the server always access the routes in the routes folder when we get a request:
+const routes = require('./routes/product.routes');
+app.use('/', routes);
 
 
 
 
-// EDIT PRODUCT
+// we are gonne use methodOverride to use delete on posts with DELETE
 
-// pass the selected product object ot the edit product page
-app.get('/products/:id/edit', function(req, res, next){
-   var id = req.params.id * 1;
-   var productToEdit = Products.findProduct(id);
-   res.render('edit', { productToEdit });
-});
-
-// when update putton is clicked, get input name and pass product object
-app.post('/update/:id', function(req, res){
-   var newName = req.body.product;
-   var id = req.params.id * 1;
-   Products.editProduct(id, newName);
-
-   // console.log('newName', newName);
-   console.log('id', id);
-   console.log('newName', newName);
-   console.log('req.params', req.params)
-   // console.log(req);
-   // res.send('herkjf')
-   res.redirect('/products');
-});
-
-
-// add a product
-app.post('/add', function(req, res) {
-  var product = req.body.product;
-  Products.addProduct(product);
-  res.redirect('/products');
-});
 
 
 const port = process.env.PORT || 3000;
