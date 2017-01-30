@@ -1,20 +1,9 @@
 {% extends "./layout.html" %}
 
 {% block content %}
-
     <form method="POST" action="/update/{{ productToEdit.id }}">
-        <label for="name_field" style="margin: 20px 0 20px 0">Name:</label><br>
-        <input name="product" type="text" id="edit_product" value= "{{ productToEdit.name }}" /><br>
+        <label for="name_field" style="margin: 20px 0 20px 0">Name:</label>
+        <input name="product" type="text" id="edit_product" value= "{{ productToEdit.name }}" class="form-control"/><br>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
-
 {% endblock %}
-
-
-    <!-- <form action="/add" method="POST">
-        <input name="product" type="text" id="add_product"  style="margin: 20px 0 20px 0"/>
-        <br>
-        <button type="submit" class="btn btn-primary">Insert</button>
-    </form> -->
-
-

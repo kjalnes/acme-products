@@ -1,17 +1,8 @@
 // simialr to tweetBank.js file
 var _products = [
-    {
-        name: 'pizza',
-        id: 1
-    },
-    {
-        name: 'burger',
-        id: 2
-    },
-    {
-        name: 'fish',
-        id: 3
-    }
+    { name: 'pizza', id: 1 },
+    { name: 'burger', id: 2 },
+    { name: 'fish', id: 3 }
 ];
 
 module.exports = {
@@ -20,28 +11,21 @@ module.exports = {
     },
     deleteProduct : function(id){
         var products = this.getProducts();
-        var itemToDelete = products.filter(function(product){
-           return product.id === id;
-        })[0];
-
+        var itemToDelete = this.findProduct(id);
         var index = products.indexOf(itemToDelete);
         this.getProducts().splice(index, 1);
     },
     addProduct : function(product) {
         var products = this.getProducts();
-        var newProduct = {name : product}
         var max = products.reduce( (memo, product)=> {
         if(product.id > memo)
             memo = product.id;
             return memo;
         }, 0);
-
-        newProduct.id = ++max;
-        _products.push(newProduct);
+        _products.push({name: product, id: ++max});
     },
     findProduct : function(id) {
-        var products = this.getProducts();
-        return products.filter(function(product){
+        return this.getProducts().filter(function(product){
             return product.id === id;
         })[0];
     },
