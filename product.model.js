@@ -29,7 +29,7 @@ module.exports = {
             return product.id === id;
         })[0];
     },
-    editProduct : function(id, newName) {
+    editProduct : function(id, newName) {//how about just passing in the updated product instead of just name?
         _products = _products.map(function(product){
             if(product.id === id) {
                 product.name = newName;
