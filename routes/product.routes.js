@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Products = require('../product.model');
+const Products = require('../product.model');//naming.. how about ProductModel or just Productsd
 
 // ROUTES
 router.get('/', function(req, res, next){
@@ -29,6 +29,7 @@ router.get('/products/:id/edit', function(req, res, next){
    res.render('edit', { productToEdit });
 });
 
+//restful routes-- use method override so this route can just be router.patch('/:id'
 // 2. when update putton is clicked, get input name and edit product in db
 router.post('/update/:id', function(req, res){
    var newName = req.body.product;
@@ -38,6 +39,7 @@ router.post('/update/:id', function(req, res){
 });
 
 // ADD PRODUCT
+//restful routes.. this should just be router.post('/'
 router.post('/add', function(req, res) {
   var product = req.body.product;
   Products.addProduct(product);
